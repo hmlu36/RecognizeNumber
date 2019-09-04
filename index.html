@@ -1,0 +1,113 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
+	<!-- textarea selection -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.selection/1.0.1/jquery.selection.min.js"></script>
+
+	<title>字數統計</title>
+	<style type="text/css">
+		@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+		* {
+			font-family: 'Noto Sans TC';
+		}
+
+		table th {
+			text-align: center !important;
+			min-width: 50px;
+		}
+
+		table td {
+			text-align: right !important;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<div class="text-center">
+			<br />
+			<h4>定位版(數字)</h4>
+			<br /><br />
+		</div>
+		<div class="d-flex justify-content-center">
+			<div class="p-2"><input v-model="inputNumber" placeholder="請輸入數字" v-on:keyup="formatNumber"></div>
+		</div>
+		<div class="d-flex justify-content-center">
+			<table class="p-6" border="1">
+				<tr>
+					<th class="table-danger">千萬</th>
+					<th class="table-danger">百萬</th>
+					<th class="table-danger">十萬</th>
+					<th class="table-danger">萬</th>
+					<th class="table-success">千</th>
+					<th class="table-success">百</th>
+					<th class="table-success">十</th>
+					<th class="table-success">個</th>
+				</tr>
+				<tr>
+					<td class="table-danger">{{d1}}</td>
+					<td class="table-danger">{{d2}}</td>
+					<td class="table-danger">{{d3}}</td>
+					<td class="table-danger">{{d4}}</td>
+					<td class="table-success">{{d5}}</td>
+					<td class="table-success">{{d6}}</td>
+					<td class="table-success">{{d7}}</td>
+					<td class="table-success">{{d8}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+
+</html>
+
+<script type="text/javascript">
+	new Vue({
+		el: '#app',
+		data: {
+			inputNumber: "",
+			d1: "0",
+			d2: "0",
+			d3: "0",
+			d4: "0",
+			d5: "0",
+			d6: "0",
+			d7: "0",
+			d8: "0"
+		},
+		methods: {
+			formatNumber() {
+				if (this.inputNumber.length > 8) {
+					alert("超過上限千萬");
+				} else {
+					let tempNumber = this.inputNumber;
+					this.d8 = tempNumber.substring(tempNumber.length - 1); tempNumber = tempNumber.substring(0, tempNumber.length - 1);
+					this.d7 = tempNumber.substring(tempNumber.length - 1); tempNumber = tempNumber.substring(0, tempNumber.length - 1);
+					this.d6 = tempNumber.substring(tempNumber.length - 1); tempNumber = tempNumber.substring(0, tempNumber.length - 1);
+					this.d5 = tempNumber.substring(tempNumber.length - 1); tempNumber = tempNumber.substring(0, tempNumber.length - 1);
+					this.d4 = tempNumber.substring(tempNumber.length - 1); tempNumber = tempNumber.substring(0, tempNumber.length - 1);
+					this.d3 = tempNumber.substring(tempNumber.length - 1); tempNumber = tempNumber.substring(0, tempNumber.length - 1);
+					this.d2 = tempNumber.substring(tempNumber.length - 1); tempNumber = tempNumber.substring(0, tempNumber.length - 1);
+					this.d1 = tempNumber.substring(tempNumber.length - 1); tempNumber = tempNumber.substring(0, tempNumber.length - 1);
+				}
+			}
+		},
+		watch: {
+
+		},
+		created() {
+		},
+		mounted() {
+
+		}
+	});
+</script>
